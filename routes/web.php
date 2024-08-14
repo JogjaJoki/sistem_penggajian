@@ -59,4 +59,14 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/update-gaji', [App\Http\Controllers\Admin\GajiController::class, 'update'])->name('admin.gaji.update');
     Route::get('/delete-gaji/{id}', [App\Http\Controllers\Admin\GajiController::class, 'delete'])->name('admin.gaji.delete');
     Route::get('/renew-gaji', [App\Http\Controllers\Admin\GajiController::class, 'renew'])->name('admin.gaji.renew');
+    
+    Route::get('/tunjangan', [App\Http\Controllers\Admin\TunjanganController::class, 'index'])->name('admin.tunjangan.index');
+    Route::get('/add-tunjangan', [App\Http\Controllers\Admin\TunjanganController::class, 'add'])->name('admin.tunjangan.add');
+    Route::post('/create-tunjangan', [App\Http\Controllers\Admin\TunjanganController::class, 'create'])->name('admin.tunjangan.create');
+    Route::get('/edit-tunjangan/{id}', [App\Http\Controllers\Admin\TunjanganController::class, 'edit'])->name('admin.tunjangan.edit');
+    Route::post('/update-tunjangan', [App\Http\Controllers\Admin\TunjanganController::class, 'update'])->name('admin.tunjangan.update');
+    Route::get('/delete-tunjangan/{id}', [App\Http\Controllers\Admin\TunjanganController::class, 'delete'])->name('admin.tunjangan.delete');
+    
+    Route::get('/laporan/{type}', [App\Http\Controllers\Admin\LaporanController::class, 'index'])->name('admin.laporan.index');
+    Route::post('/generate-laporan', [App\Http\Controllers\Admin\LaporanController::class, 'generate'])->name('admin.laporan.generate');
 });

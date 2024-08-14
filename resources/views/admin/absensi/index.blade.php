@@ -35,6 +35,7 @@
                                         <th>In</th>
                                         <th>Out</th>
                                         <th>Keterangan</th>
+                                        <th>Denda</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                             <td>{{ $row->in->format('H:i') }}</td>
                                             <td>{{ $row->out != null ? $row->out->format('H:i') : '' }}</td>
                                             <td>{{ $row->keterangan }}</td>
+                                            <td>{{ $row->denda }}</td>
                                             <td>
                                                 <a href="{{ route('admin.absensi.edit', ['id' => $row->id]) }}"
                                                     class="btn btn-warning"><i class="fa fa-edit"></i></a>

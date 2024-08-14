@@ -43,6 +43,17 @@
                                 </div>
                             </div>
                             <!-- /.card-body -->
+                            <hr>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Tunjangan</label>
+                                    @foreach($tunjangan as $t)
+                                        <div>
+                                            <input type="checkbox" name="tunjangan[]" value="{{ $t->id }}" id="">    {{ $t->name . " - " . $t->rate }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>

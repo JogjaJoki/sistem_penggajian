@@ -23,7 +23,7 @@ class AbsensiController extends Controller
     }
 
     public function add(){
-        $karyawan = User::where('role', 'karyawan')->get();
+        $karyawan = User::where('role', '!=', 'pemilik')->get();
 
         return view('admin.absensi.add', compact(['karyawan']));
     }
@@ -34,6 +34,7 @@ class AbsensiController extends Controller
             'in' => $req->in,
             'out' => $req->out,
             'keterangan' => $req->keterangan,
+            'denda' => $req->denda,
         ]);
 
         return redirect()->route('admin.absensi.index');
@@ -52,6 +53,7 @@ class AbsensiController extends Controller
         $absensi->in = $req->in;
         $absensi->out = $req->out;
         $absensi->keterangan = $req->keterangan;
+        $absensi->denda = $req->denda;
 
         $absensi->save();
 

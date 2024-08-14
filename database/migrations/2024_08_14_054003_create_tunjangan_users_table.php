@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGajisTable extends Migration
+class CreateTunjanganUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateGajisTable extends Migration
      */
     public function up()
     {
-        Schema::create('gajis', function (Blueprint $table) {
+        Schema::create('tunjangan_users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('uang_lembur');
-            $table->integer('potongan_absensi');
-            $table->integer('gaji_bersih');
-            $table->integer('gaji_kotor');
-            $table->integer('tunjangan');
+            $table->unsignedBigInteger('tunjangan_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('tunjangan_id')->references('id')->on('tunjangans')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -34,6 +31,6 @@ class CreateGajisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gajis');
+        Schema::dropIfExists('tunjangan_users');
     }
 }

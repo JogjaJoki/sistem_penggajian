@@ -13,6 +13,7 @@ class Absensi extends Model
         'user_id',
         'in',
         'out',
+        'denda',
         'keterangan'
     ];
 

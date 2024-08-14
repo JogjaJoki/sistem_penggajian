@@ -19,6 +19,7 @@ class CreateAbsensisTable extends Migration
             $table->time('in');
             $table->time('out')->nullable();
             $table->string('keterangan')->nullable();
+            $table->integer('denda')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

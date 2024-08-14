@@ -35,6 +35,10 @@
                                     <label>Keterangan</label>
                                     <input name="keterangan" class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label>Denda</label>
+                                    <input name="denda" class="form-control">
+                                </div>
                             </div>
                             <!-- /.card-body -->
 

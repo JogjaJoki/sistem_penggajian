@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
     <div class="container-fluid my-3 d-flex justify-content-between px-3" style="padding-left: 1%;">
-        <a href="{{ route('admin.karyawan.add') }}" class="btn btn-primary">Tambah Data</a>
+        <a href="{{ route('admin.tunjangan.add') }}" class="btn btn-primary">Tambah Data</a>
     </div>
     <br>
 
@@ -22,7 +22,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Petugas</h3>
+                            <h3 class="card-title">Data Tunjangan</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -31,30 +31,20 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Email</th>
-                                        <th>Bagian</th>
-                                        <th>Tunjangan</th>
+                                        <th>Rate</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($karyawan as $index => $row)
+                                    @foreach ($tunjangan as $index => $row)
                                         <tr>
                                             <td>{{ ++$index }}</td>
                                             <td>{{ $row->name }}</td>
-                                            <td>{{ $row->email }}</td>
-                                            <td>{{ $row->bagian->name }}</td>
+                                            <td>{{ $row->rate }}</td>
                                             <td>
-                                                <ul>
-                                                @foreach($row->tunjangan as $t)
-                                                    <li>{{ $t->name . " - " . $t->rate }}</li>
-                                                @endforeach
-                                                </ul>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('admin.karyawan.edit', ['id' => $row->id]) }}"
+                                                <a href="{{ route('admin.tunjangan.edit', ['id' => $row->id]) }}"
                                                     class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                                <a href="{{ route('admin.karyawan.delete', ['id' => $row->id]) }}"
+                                                <a href="{{ route('admin.tunjangan.delete', ['id' => $row->id]) }}"
                                                     onclick="return confirm('Are you sure?'); return false;"
                                                     class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>

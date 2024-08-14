@@ -44,6 +44,25 @@
                                 </div>
                             </div>
                             <!-- /.card-body -->
+                            <hr>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Tunjangan</label>
+                                    @foreach($tunjangan as $t)
+                                        <div>
+                                            <input type="checkbox" name="tunjangan[]" 
+                                                <?php
+                                                    foreach($karyawan->tunjangan as $tj){
+                                                        if($tj->id == $t->id){
+                                                            echo 'checked';
+                                                        }
+                                                    }
+                                                ?>                                            
+                                            value="{{ $t->id }}" id="">    {{ $t->name . " - " . $t->rate }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>

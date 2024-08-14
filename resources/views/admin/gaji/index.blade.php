@@ -23,7 +23,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Gaji</h3>
+                            <h3 class="card-title">Data Gaji Bulan Ini</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -36,6 +36,7 @@
                                         <th>Bagian</th>
                                         <th>Upah Lembur</th>
                                         <th>Potongan Absensi</th>
+                                        <th>Tunjangan</th>
                                         <th>Gaji Bersih</th>
                                         <th>Gaji Kotor</th>
                                         <th>Total Gaji</th>
@@ -43,7 +44,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($gaji as $index => $row)
+                                    @foreach ($currentgaji as $index => $row)
                                         <tr>
                                             <td>{{ ++$index }}</td>
                                             <td>{{ $row->created_at->format('M') }}</td>
@@ -51,6 +52,7 @@
                                             <td>{{ $row->user->bagian->name }}</td>
                                             <td>{{ $row->uang_lembur }}</td>
                                             <td>{{ $row->potongan_absensi }}</td>
+                                            <td>{{ $row->tunjangan }}</td>
                                             <td>{{ $row->gaji_bersih }}</td>
                                             <td>{{ $row->gaji_kotor }}</td>
                                             <td>{{ $row->gaji_kotor - $row->potongan_absensi + $row->uang_lembur }}</td>
@@ -68,6 +70,54 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Data Semua Gaji</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Bulan</th>
+                                        <th>Nama Karyawan</th>
+                                        <th>Bagian</th>
+                                        <th>Upah Lembur</th>
+                                        <th>Potongan Absensi</th>
+                                        <th>Tunjangan</th>
+                                        <th>Gaji Bersih</th>
+                                        <th>Gaji Kotor</th>
+                                        <th>Total Gaji</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($gaji as $index => $row)
+                                        <tr>
+                                            <td>{{ ++$index }}</td>
+                                            <td>{{ $row->created_at->format('M') }}</td>
+                                            <td>{{ $row->user->name }}</td>
+                                            <td>{{ $row->user->bagian->name }}</td>
+                                            <td>{{ $row->uang_lembur }}</td>
+                                            <td>{{ $row->potongan_absensi }}</td>
+                                            <td>{{ $row->tunjangan }}</td>
+                                            <td>{{ $row->gaji_bersih }}</td>
+                                            <td>{{ $row->gaji_kotor }}</td>
+                                            <td>{{ $row->gaji_kotor - $row->potongan_absensi + $row->uang_lembur }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.gaji.edit', ['id' => $row->id]) }}"
+                                                    class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ route('admin.gaji.delete', ['id' => $row->id]) }}"
+                                                    onclick="return confirm('Are you sure?'); return false;"
+                                                    class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
                 </div>
                 <!-- /.col -->
             </div>

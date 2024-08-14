@@ -16,7 +16,7 @@ class GajiController extends Controller
         $setting = Setting::findOrFail(1);
     
         // Cek apakah tanggal penggajian sesuai dengan hari ini
-        if($setting->tanggal_penggajian_bulanan != date('d')){
+        if(date('d') < $setting->tanggal_penggajian_bulanan){
             return;
         }
     
@@ -31,15 +31,29 @@ class GajiController extends Controller
             }
     
             $upah_lembur = 0;
+            $currentMonth = date('m');
             foreach($u->lemburs as $lembur){
-                $upah_lembur += (intval($lembur->durasi) * intval($lembur->rate));
+                if ($lembur->created_at->format('m') == $currentMonth) {
+                    $upah_lembur += (intval($lembur->durasi) * intval($lembur->rate));
+                }
+            }
+
+            $tunjangan = 0;
+            foreach($u->tunjangan as $tj){
+                $tunjangan += $tj->rate;
+            }
+
+            $potongan_absensi = 0;
+            foreach($u->absensi as $ab){
+                $potongan_absensi += $ab->denda;
             }
     
             $gajiBaru = new Gaji;
             $gajiBaru->user_id = $u->id;
             $gajiBaru->uang_lembur = $upah_lembur;
-            $gajiBaru->potongan_absensi = 0;
-            $gajiBaru->gaji_bersih = $u->bagian->gaji - $gajiBaru->potongan_absensi + $upah_lembur;
+            $gajiBaru->potongan_absensi = $potongan_absensi;
+            $gajiBaru->tunjangan = $tunjangan;
+            $gajiBaru->gaji_bersih = $u->bagian->gaji - $gajiBaru->potongan_absensi + $upah_lembur + $tunjangan;
             $gajiBaru->gaji_kotor = $u->bagian->gaji;
             $gajiBaru->save();
         }
@@ -63,8 +77,10 @@ class GajiController extends Controller
     public function index(){
         $this->generateGaji();
         $gaji = Gaji::all();
+        $currentgaji = Gaji::whereYear('created_at', date('Y'))
+                                ->whereMonth('created_at', date('m'))->get();
 
-        return view('admin.gaji.index', compact(['gaji']));
+        return view('admin.gaji.index', compact(['gaji', 'currentgaji']));
     }
 
     public function edit($id){

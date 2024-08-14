@@ -150,51 +150,31 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.karyawan.index') }}"
+                                <a href="{{ route('admin.laporan.index', ['type' => 'karyawan']) }}"
                                     class="nav-link">
                                     <i class="nav-icon fas fa-database"></i>
                                     <p>
-                                        Karyawan
+                                        Laporan Karyawan
                                         {{-- <span class="badge badge-info right">2</span> --}}
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.bagian.index') }}"
+                                <a href="{{ route('admin.laporan.index', ['type' => 'absensi']) }}"
                                     class="nav-link">
                                     <i class="nav-icon fas fa-database"></i>
                                     <p>
-                                        Bagian
+                                        Laporan Presensi
                                         {{-- <span class="badge badge-info right">2</span> --}}
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.absensi.index') }}"
+                                <a href="{{ route('admin.laporan.index', ['type' => 'gaji']) }}"
                                     class="nav-link">
                                     <i class="nav-icon fas fa-database"></i>
                                     <p>
-                                        Absensi
-                                        {{-- <span class="badge badge-info right">2</span> --}}
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.lembur.index') }}"
-                                    class="nav-link">
-                                    <i class="nav-icon fas fa-database"></i>
-                                    <p>
-                                        Lembur
-                                        {{-- <span class="badge badge-info right">2</span> --}}
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.gaji.index') }}"
-                                    class="nav-link">
-                                    <i class="nav-icon fas fa-database"></i>
-                                    <p>
-                                        Gaji
+                                        Laporan Gaji
                                         {{-- <span class="badge badge-info right">2</span> --}}
                                     </p>
                                 </a>
@@ -207,6 +187,16 @@
                                     <i class="nav-icon fas fa-database"></i>
                                     <p>
                                         Gaji
+                                        {{-- <span class="badge badge-info right">2</span> --}}
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.tunjangan.index') }}"
+                                    class="nav-link">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>
+                                        Tunjangan
                                         {{-- <span class="badge badge-info right">2</span> --}}
                                     </p>
                                 </a>

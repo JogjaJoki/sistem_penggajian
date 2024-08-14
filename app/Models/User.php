@@ -67,4 +67,8 @@ class User extends Authenticatable
     public function absensi(){
         return $this->hasMany(Absensi::class, 'user_id');
     }
+
+    public function tunjangan(){
+        return $this->belongsToMany(Tunjangan::class, 'tunjangan_users', 'user_id', 'tunjangan_id');
+    }
 }

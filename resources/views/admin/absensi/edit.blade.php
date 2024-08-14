@@ -26,15 +26,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>In</label>
-                                    <input name="in" value="{{ $absensi->in }}" class="form-control timepicker" required>
+                                    <input name="in" value="{{ $absensi->in->format('H:i') }}" class="form-control timepicker" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Out</label>
-                                    <input name="out" value="{{ $absensi->out }}" class="form-control timepicker">
+                                    <input name="out" value="{{ $absensi->out != null ? $absensi->out->format('H:i') : '' }}" class="form-control timepicker">
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <input name="keterangan" value="{{ $absensi->keterangan }}" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Denda</label>
+                                    <input name="denda" value="{{ $absensi->denda }}" class="form-control">
                                 </div>
                             </div>
                             <!-- /.card-body -->
